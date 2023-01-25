@@ -1,0 +1,82 @@
+{% extends 'admin/change_list.html' %}
+
+{% comment %} {% load global_filters humanize %} {% endcomment %}
+
+{% block content_title %}
+    <h1><strong>Quote Summary {{ page_title_suffix }}</strong></h1>
+{% endblock %}
+
+{% block result_list %}
+
+    <div class="results">
+
+        <div class="results_table">
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        <div class="text">
+                            <a href="#">Test Group</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Conversion</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Total Price</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Net Profit</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Gross Profit</a>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+
+                {% comment %} <tbody>
+                {% for row in quote_summary %}
+                    <tr class=”{% cycle 'row1' 'row2' %}”>
+                        <td>
+                            {{ row.test_group }}
+                        </td>
+                        <td>
+                            {{ row.conversion|intcomma }}
+                        </td>
+                        <td>
+                            {{ row.total_price|intcomma }}
+                        </td>
+                        <td>
+                            {{ row.net_profit|intcomma }}
+                        </td>
+                        <td>
+                            {{ row.gross_profit|intcomma }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody> {% endcomment %}
+
+                <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
+                    <td>Total</td>
+                    <td>{{ quote_summary_total.sales_count }} : 
+                        {{ quote_summary_total.non_sales_count }}</td>
+                    <td>{{ quote_summary_total.total_price_sum }}</td>
+                    <td>{{ quote_summary_total.net_profit_sum }} </td>
+                    <td>{{ quote_summary_total.gross_profit_sum }}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block pagination %}{% endblock %}
