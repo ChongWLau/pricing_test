@@ -49,16 +49,16 @@
                             {{ row.test_group }}
                         </td>
                         <td>
-                            {{ row.conversion }}
+                            {{ row.sales_count }} : {{ row.non_sales_count }}
                         </td>
                         <td>
-                            {{ row.total_price }}
+                            {{ row.total_price_sum|floatformat:2|intcomma }}
                         </td>
                         <td>
-                            {{ row.net_profit }}
+                            {{ row.net_profit|floatformat:2|intcomma }}
                         </td>
                         <td>
-                            {{ row.gross_profit  }}
+                            {{ row.gross_profit|floatformat:2|intcomma  }}
                         </td>
                     </tr>
                 {% endfor %}
@@ -68,9 +68,9 @@
                     <td>Total</td>
                     <td>{{ quote_summary_total.sales_count }} : 
                         {{ quote_summary_total.non_sales_count }}</td>
-                    <td>{{ quote_summary_total.total_price_sum|intcomma }}</td>
-                    <td>{{ quote_summary_total.net_profit|intcomma }} </td>
-                    <td>{{ quote_summary_total.gross_profit|intcomma }}</td>
+                    <td>{{ quote_summary_total.total_price_sum|floatformat:2|intcomma }}</td>
+                    <td>{{ quote_summary_total.net_profit|floatformat:2|intcomma }} </td>
+                    <td>{{ quote_summary_total.gross_profit|floatformat:2|intcomma }}</td>
                 </tr>
 
             </table>
