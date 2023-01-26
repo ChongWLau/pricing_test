@@ -1,6 +1,6 @@
 {% extends 'admin/change_list.html' %}
 
-{% comment %} {% load global_filters humanize %} {% endcomment %}
+{% load humanize %}
 
 {% block content_title %}
     <h1><strong>Quote Summary {{ page_title_suffix }}</strong></h1>
@@ -42,35 +42,35 @@
                 </tr>
                 </thead>
 
-                {% comment %} <tbody>
+                <tbody>
                 {% for row in quote_summary %}
                     <tr class=”{% cycle 'row1' 'row2' %}”>
                         <td>
                             {{ row.test_group }}
                         </td>
                         <td>
-                            {{ row.conversion|intcomma }}
+                            {{ row.conversion }}
                         </td>
                         <td>
-                            {{ row.total_price|intcomma }}
+                            {{ row.total_price }}
                         </td>
                         <td>
-                            {{ row.net_profit|intcomma }}
+                            {{ row.net_profit }}
                         </td>
                         <td>
-                            {{ row.gross_profit|intcomma }}
+                            {{ row.gross_profit  }}
                         </td>
                     </tr>
                 {% endfor %}
-                </tbody> {% endcomment %}
+                </tbody>
 
                 <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
                     <td>Total</td>
                     <td>{{ quote_summary_total.sales_count }} : 
                         {{ quote_summary_total.non_sales_count }}</td>
-                    <td>{{ quote_summary_total.total_price_sum }}</td>
-                    <td>{{ quote_summary_total.net_profit_sum }} </td>
-                    <td>{{ quote_summary_total.gross_profit_sum }}</td>
+                    <td>{{ quote_summary_total.total_price_sum|intcomma }}</td>
+                    <td>{{ quote_summary_total.net_profit|intcomma }} </td>
+                    <td>{{ quote_summary_total.gross_profit|intcomma }}</td>
                 </tr>
 
             </table>
