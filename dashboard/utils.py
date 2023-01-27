@@ -1,5 +1,5 @@
 from django.db.models import Count, Q, Sum
-from django.db.models.functions import Round
+from django.db.models.functions import Round, ExtractWeekDay, ExtractWeek
 
 
 summary = {
@@ -11,12 +11,27 @@ summary = {
 }
 
 
-def get_quotes_summary(qs) -> dict:
-    
-    results = qs.values('test_group').annotate(**summary).order_by()
-    
-    return results
+def get_quotes_summary(qs, split_by: str) -> dict:
+    return qs.values(split_by).annotate(**summary).order_by()
 
 
 def get_quotes_summary_total(qs) -> dict:
     return qs.aggregate(**summary)
+
+
+# def get_quotes_summary_by_day(qs):
+#     return qs.values(
+#         day=ExtractWeekDay('transaction_date')
+#     ).annotate(
+#         total_price_sum=Sum('total_price', distinct=True),
+#     ).order_by('day')
+
+# def get_quotes_summary_by_week(qs):
+#     return qs.values(
+#         day=ExtractWeek('transaction_date')
+#     ).annotate(
+#         total_price_sum=Sum('total_price', distinct=True),
+#     ).order_by('week')
+
+# values(week=ExtractWeek('transaction_date')).annotate(total_price_sum=Sum('total_price', distinct=
+# True)).order_by('week')

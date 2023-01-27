@@ -43,10 +43,74 @@
                 </thead>
 
                 <tbody>
-                {% for row in quote_summary %}
+                {% for row in quote_summary_test_group %}
                     <tr class=”{% cycle 'row1' 'row2' %}”>
                         <td>
                             {{ row.test_group }}
+                        </td>
+                        <td>
+                            {{ row.sales_count }} : {{ row.non_sales_count }}
+                        </td>
+                        <td>
+                            {{ row.total_price_sum|floatformat:2|intcomma }}
+                        </td>
+                        <td>
+                            {{ row.net_profit|floatformat:2|intcomma }}
+                        </td>
+                        <td>
+                            {{ row.gross_profit|floatformat:2|intcomma  }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
+                    <td>Total</td>
+                    <td>{{ quote_summary_total.sales_count }} : 
+                        {{ quote_summary_total.non_sales_count }}</td>
+                    <td>{{ quote_summary_total.total_price_sum|floatformat:2|intcomma }}</td>
+                    <td>{{ quote_summary_total.net_profit|floatformat:2|intcomma }} </td>
+                    <td>{{ quote_summary_total.gross_profit|floatformat:2|intcomma }}</td>
+                </tr>
+
+            </table>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        <div class="text">
+                            <a href="#">By Day</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Conversion</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Total Price</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Net Profit</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Gross Profit</a>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for row in quote_summary_by_age %}
+                    <tr class=”{% cycle 'row1' 'row2' %}”>
+                        <td>
+                            {{ row.customer_age }}
                         </td>
                         <td>
                             {{ row.sales_count }} : {{ row.non_sales_count }}
