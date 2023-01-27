@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Quotes
 from .utils import (
-    get_quotes_summary_total, get_quotes_summary
+    get_quotes_summary_total, get_quotes_summary, get_quotes_summary_by_day
 )
 
 
@@ -16,6 +16,7 @@ class BaseSummaryAdmin(admin.ModelAdmin):
 @admin.register(Quotes)
 class DashboardViewAdmin(BaseSummaryAdmin):
     change_list_template = 'admin/quotes_change_list.html'
+    date_hierarchy = 'transaction_date'
     
     def changelist_view(self, request, extra_content=None):
         response = super().changelist_view(

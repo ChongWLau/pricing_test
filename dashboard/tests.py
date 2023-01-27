@@ -1,7 +1,6 @@
 from django.test import TestCase, RequestFactory, Client
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
-from django.forms.models import model_to_dict
 
 from dashboard.models import Quotes
 from dashboard.utils import get_quotes_summary
